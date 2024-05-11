@@ -8,7 +8,7 @@ const input_content = ref('')
 const input_category = ref(null)
 
 const todos_asc = computed(() => todos.value.sort((a, b) => {
-  return a.createdAt - b.createdAt
+  return b.createdAt - a.createdAt
 }))
 
 const addTodo = () => {
@@ -24,12 +24,17 @@ const addTodo = () => {
   })
 }
 
+watch(todos, newVal => {
+  localStorage.setItem('todos', JSON.stringify(newVal))
+}, { deep: true })
+
 watch(name, (newVal) => {
   localStorage.setItem('name', newVal)
 })
 
 onMounted(() => {
   name.value = localStorage.getItem('name') || ''
+  todos.value = JSON.parse(localStorage.getItem('todos')) || []
 })
 </script>
 
