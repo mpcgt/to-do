@@ -28,3 +28,4 @@ dist-ssr
 !.firebase/.firebase/hosting.cHVibGlj.cache
 .firebaserc
 firebase.json
+src/index.html
