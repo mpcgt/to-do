@@ -5,7 +5,7 @@ const todos = ref([])
 const name = ref('')
 
 const input_content = ref('')
-const inpt_category = ref(null)
+const input_category = ref(null)
 
 const todos_asc = computed(() => todos.value.sort((a, b) => {
   return a.createdAt - b.createdAt
@@ -40,7 +40,25 @@ onMounted(() => {
           <h4>
             Quelle est votre liste de choses à faire ?
           </h4>
-          <input type="text" placeholder="Ecrivez ici" v-model="input_content">
+          <input 
+            type="text" 
+            placeholder="Ecrivez ici" 
+            v-model="input_content" />
+
+          <h4>Choisissez une catégorie</h4>
+
+          <div class="options">
+
+            <label>
+              <input 
+                type="radio" 
+                name="category"
+                id="category1"
+                value="business"
+                v-model="input_category" />
+            </label>
+
+          </div>
         </form>
       </section>
 
