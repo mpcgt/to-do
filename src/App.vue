@@ -24,6 +24,10 @@ const addTodo = () => {
   })
 }
 
+const removeTodo = todo => {
+  todos.value = todos.value.filter(t => t !== todo)
+}
+
 watch(todos, newVal => {
   localStorage.setItem('todos', JSON.stringify(newVal))
 }, { deep: true })
@@ -106,16 +110,19 @@ onMounted(() => {
             </label>
 
               <div class="todo-content">
-
                   <input type="text" v-model="todo.content">
+              </div>
 
+              <div class="actions">
+                <button class="delete" @click="removeTodo(todo)">Supprimer</button>
               </div>
 
           </div>
 
         </div>
+
       </section>
 
-  </main>
+    </main>
 
 </template>
