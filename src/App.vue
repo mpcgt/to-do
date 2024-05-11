@@ -72,7 +72,7 @@ onMounted(() => {
                 value="business"
                 v-model="input_category" />
               <span class="bubble business"></span>
-              <div>Professionnel</div>
+              <div>Business</div>
             </label>
 
             <label>
@@ -90,6 +90,30 @@ onMounted(() => {
           <input type="submit" value="Add todo" />
 
         </form>
+      </section>
+
+      <section class="todo-list">
+        <h3>
+          Liste de to-do
+        </h3>
+        <div class="list">
+
+          <div v-for="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
+
+            <label>
+              <input type="checkbox" v-model="todo.done" />
+              <span :class="`bubble ${todo.category}`"></span>
+            </label>
+
+              <div class="todo-content">
+
+                  <input type="text" v-model="todo.content">
+
+              </div>
+
+          </div>
+
+        </div>
       </section>
 
   </main>
