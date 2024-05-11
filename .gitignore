@@ -30,6 +30,3 @@ dist-ssr
 .firebaserc
 firebase.json
 src/index.html
-
-dist
-dist/package.json
