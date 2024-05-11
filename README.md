@@ -17,8 +17,8 @@ Ce site web vous offre un outil puissant et convivial pour organiser votre vie q
 • <b>Accès depuis n'importe où :</b> Accédez à votre liste de tâches depuis n'importe quel appareil, où que vous soyez. <br />
 
 ## J'ai décidé de protéger votre vie privée et de vous offrir une expérience utilisateur sûre et confidentielle.
-• <b>Stockage local des données:</b> Vos listes de tâches sont stockées uniquement sur votre appareil. Elles ne sont jamais envoyées à nos serveurs ou à des tiers. Vous avez ainsi le contrôle total sur vos données. <br />
-• <b>Aucune collecte de données personnelles:</b> Nous ne collectons aucune donnée personnelle identifiable à votre sujet. Nous n'exigeons aucune inscription ni aucune information personnelle pour utiliser notre site web. <br />
+• <b>Stockage local des données :</b> Vos listes de tâches sont stockées uniquement sur votre appareil. Elles ne sont jamais envoyées à nos serveurs ou à des tiers. Vous avez ainsi le contrôle total sur vos données. <br />
+• <b>Aucune collecte de données personnelles :</b> Nous ne collectons aucune donnée personnelle identifiable à votre sujet. Nous n'exigeons aucune inscription ni aucune information personnelle pour utiliser notre site web. <br />
 
 ### En choisissant votre site web de liste de tâches, vous pouvez être sûr que vos données sont en sécurité et que votre vie privée est respectée.
 
