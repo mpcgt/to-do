@@ -7,9 +7,19 @@ const name = ref('')
 const input_content = ref('')
 const input_category = ref(null)
 
-const todos_asc = computed(() => todos.value.sort((a, b) => {
-  return b.createdAt - a.createdAt
+const todos_asc = computed(() => todos.value.sort((a, b) =>{
+  return a.createdAt - b.createdAt
 }))
+
+watch(name, (newVal) => {
+	localStorage.setItem('name', newVal)
+})
+
+watch(todos, (newVal) => {
+	localStorage.setItem('todos', JSON.stringify(newVal))
+}, {
+	deep: true
+})
 
 const addTodo = () => {
   if (input_content.value.trim() === '' || input_category.value === null) {
@@ -20,28 +30,18 @@ const addTodo = () => {
     content: input_content.value,
     category: input_category.value,
     done: false,
+    editable: false,
     createdAt: new Date.getTime()
   })
-
-  input_content.value = ''
-  input_category.value = null
 }
 
-const removeTodo = todo => {
-  todos.value = todos.value.filter(t => t !== todo)
+const removeTodo = (todo) => {
+  todos.value = todos.value.filter((t) => t !== todo)
 }
-
-watch(todos, newVal => {
-  localStorage.setItem('todos', JSON.stringify(newVal))
-}, { deep: true })
-
-watch(name, (newVal) => {
-  localStorage.setItem('name', newVal)
-})
 
 onMounted(() => {
-  name.value = localStorage.getItem('name') || ''
-  todos.value = JSON.parse(localStorage.getItem('todos')) || []
+	name.value = localStorage.getItem('name') || ''
+	todos.value = JSON.parse(localStorage.getItem('todos')) || []
 })
 </script>
 
@@ -50,7 +50,7 @@ onMounted(() => {
   <main class="app">
     <section class="gretting">
       <h2 class="title">
-        Quoi de neuf,  <input type="text" placeholder="Ton nom ici" v-model="name" />
+        Quoi de neuf,  <input type="text" id="name" placeholder="Ton nom ici" v-model="name" />
       </h2>
     </section>
 
@@ -59,23 +59,25 @@ onMounted(() => {
           Créer un todo
         </h3>
 
-        <form @submit.prevent="addTodo">
+        <form id="new-todo-form" @submit.prevent="addTodo">
           <h4>
             Quelle est votre liste de choses à faire ?
           </h4>
           <input 
-            type="text" 
+            type="text"
+            name="content" 
+					  id="content"
             placeholder="Ecrivez ici" 
             v-model="input_content" />
 
           <h4>Choisissez une catégorie</h4>
-
           <div class="options">
 
             <label>
               <input 
                 type="radio" 
                 name="category"
+                id="category1"
                 value="business"
                 v-model="input_category" />
               <span class="bubble business"></span>
@@ -86,6 +88,7 @@ onMounted(() => {
               <input 
                 type="radio" 
                 name="category"
+                id="category2"  
                 value="personal"
                 v-model="input_category" />
               <span class="bubble personal"></span>
@@ -103,17 +106,20 @@ onMounted(() => {
         <h3>
           Liste de to-do
         </h3>
-        <div class="list">
+        <div class="list" id="todo-list">
 
           <div v-for="todo in todos_asc" :class="`todo-item ${todo.done && 'done'}`">
-
             <label>
               <input type="checkbox" v-model="todo.done" />
-              <span :class="`bubble ${todo.category}`"></span>
+              <span :class="`bubble ${
+                todo.category== 'business'
+                ? 'business'
+                : 'personal'
+                }`"></span>
             </label>
 
               <div class="todo-content">
-                  <input type="text" v-model="todo.content">
+                  <input type="text" v-model="todo.content" />
               </div>
 
               <div class="actions">
