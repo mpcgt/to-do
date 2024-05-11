@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import {ref, onMounted, computed, watch } from 'vue'
 
 const todos = ref([])
@@ -11,7 +11,18 @@ const todos_asc = computed(() => todos.value.sort((a, b) => {
   return a.createdAt - b.createdAt
 }))
 
-const addTodo = () => {}
+const addTodo = () => {
+  if (input_content.value.trim() === '' || input_category.value === null) {
+    return
+  } 
+
+  todos.value.push({
+    content: input_content.value,
+    category: input_category.value,
+    done: false,
+    createdAt: new Date.getTime()
+  })
+}
 
 watch(name, (newVal) => {
   localStorage.setItem('name', newVal)
@@ -36,7 +47,7 @@ onMounted(() => {
           Créer un todo
         </h3>
 
-        <form @submit.prevent="addTodo">*
+        <form @submit.prevent="addTodo">
           <h4>
             Quelle est votre liste de choses à faire ?
           </h4>
@@ -66,9 +77,13 @@ onMounted(() => {
                 value="personal"
                 v-model="input_category" />
               <span class="bubble personal"></span>
-              <div>Personnem</div>
+              <div>Personnel</div>
             </label>
+
           </div>
+
+          <input type="submit" value="Add todo" />
+
         </form>
       </section>
 
