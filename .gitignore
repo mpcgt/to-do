@@ -26,6 +26,7 @@ dist-ssr
 # Firebase
 .firebase/*
 !.firebase/.firebase/hosting.cHVibGlj.cache
+!.firebase/.firebase/hosting.c3Jj.cache
 .firebaserc
 firebase.json
 src/index.html
