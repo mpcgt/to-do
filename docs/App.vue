@@ -1,6 +1,8 @@
 <script setup>
 import {ref, onMounted, computed, watch } from 'vue'
+import { inject } from '@vercel/analytics';
 
+inject();
 const todos = ref([])
 const name = ref('')
 
